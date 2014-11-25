@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
+  before_action :check_admin, only: [:new, :edit, :create, :update]
   
   expose(:categories)
   expose(:category)
@@ -12,40 +13,26 @@ class CategoriesController < ApplicationController
   end
 
   def new
-    unless current_user.admin?
-      redirect_to new_user_session_path, notice: 'You cannot create category.'
-    end
   end
 
   def edit
-    unless current_user.admin?
-      redirect_to new_user_session_path, notice: 'You cannot edit category.'
-    end
   end
 
   def create
-    if current_user.admin?
-      self.category = Category.new(category_params)
+    self.category = Category.new(category_params)
 
-      if category.save
-        redirect_to category, notice: 'Category was successfully created.'
-      else
-        render action: 'new'
-      end
+    if category.save
+      redirect_to category, notice: 'Category was successfully created.'
     else
-      redirect_to new_user_session_path, notice: 'You cannot create category.'
+      render action: 'new'
     end
   end
 
   def update
-    if current_user.admin?
-      if category.update(category_params)
-        redirect_to category, notice: 'Category was successfully updated.'
-      else
-        render action: 'edit'
-      end
+    if category.update(category_params)
+      redirect_to category, notice: 'Category was successfully updated.'
     else
-      redirect_to new_user_session_path, notice: 'You cannot update category.'
+      render action: 'edit'
     end
   end
 
@@ -58,4 +45,9 @@ class CategoriesController < ApplicationController
     def category_params
       params.require(:category).permit(:name)
     end
+
+    def check_admin
+      redirect_to new_user_session_path unless current_user.admin?
+    end
+
 end
