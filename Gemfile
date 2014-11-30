@@ -22,6 +22,7 @@ gem 'travis'
 gem 'ffaker'
 gem 'konf'
 
+gem 'bower-rails'
 
 group :development do
   gem 'spring'

@@ -2,21 +2,28 @@
 
 %h1 Listing categories
 
-%table.table
-  %tr
-    %th Name
-    %th
-    %th
-    %th
+%div{"ng-controller" => "CategoriesController"}
 
-  - categories.each do |category|
+  %table.table
     %tr
-      %td= category.name
-      %td= link_to 'Show', category
-      - if current_user && current_user.admin?
-        %td= link_to 'Edit', edit_category_path(category)
-        %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
+      %th Name
+      %th
+      %th
+      %th
 
-%br
-- if current_user && current_user.admin?
-  = link_to 'New Category', new_category_path
+    - categories.each do |category|
+      %tr
+        %td= category.name
+        %td= link_to 'Show', category
+        - if current_user && current_user.admin?
+          %td= link_to 'Edit', edit_category_path(category)
+          %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
+
+  %br
+  - if current_user && current_user.admin?
+    = link_to 'New Category', new_category_path
+
+  %md-button.md-raised {{title1}}
+
+  %md-checkbox{"md-no-ink"=>true, "aria-label"=>"Checkbox No Ink"}
+    Checkbox (No Ink)
