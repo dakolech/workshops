@@ -10,8 +10,7 @@ User.create!(firstname:  "Daniel",
              lastname: "Koza",
              email: "danielkoza@gmail.com",
              password:              "danielkoza",
-             password_confirmation: "danielkoza",
-             admin: true)
+             password_confirmation: "danielkoza")
 
 User.create!(firstname:  "John",
              lastname: "Lennon",
@@ -44,6 +43,7 @@ User.create!(firstname:  "Stephen",
              password_confirmation: "stephenhendry")
 
 users = User.all
+users[0].update_column :admin, true
 
 tables = Category.create!(name: "Tables")
 

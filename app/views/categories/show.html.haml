@@ -1,3 +1,6 @@
+#{ provide(:title, category.name) }
+category.name
+
 %p#notice= notice
 
 %p
@@ -12,6 +15,7 @@
   %h3 New product
   = render 'products/form'
 
-= link_to 'Edit', edit_category_path(category)
-\|
+- if current_user && current_user.admin?
+  = link_to 'Edit', edit_category_path(category)
+  \|
 = link_to 'Back', categories_path, class: 'btn btn-primary'

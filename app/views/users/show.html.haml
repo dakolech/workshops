@@ -1,0 +1,9 @@
+=@user.firstname
+
+
+%table
+  - @user.reviews.order('created_at DESC').take(5).each do |review|
+    %tr
+      %td= review.rating
+      %td= review.content
+      %td= review.created_at
