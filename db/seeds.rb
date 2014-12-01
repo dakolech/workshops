@@ -85,7 +85,7 @@ products = Product.all
 products.each do |product|
   5.times do
     product.reviews.create!(content: Faker::Lorem.sentence(Random.rand(10)),
-                            rating: Random.rand(5),
+                            rating: Random.rand(5)+1,
                             user_id: users[Random.rand(5)].id)
   end
 
