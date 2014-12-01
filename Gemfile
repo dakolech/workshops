@@ -21,7 +21,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'travis'
 gem 'ffaker'
 gem 'konf'
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 
 gem 'bower-rails'
 
