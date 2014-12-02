@@ -39,9 +39,12 @@ md-button {
 
     }
     .product-cell {
-      width: 300px;
+      width: 250px;
       overflow: hidden;
       text-align: right;
+      md-button {
+        min-width: 225px;
+      }
       .md-button-inner {
         padding: 5px;
         h3 {
@@ -74,9 +77,19 @@ md-button {
   margin-top: 10px;
 }
 
-.form-product {
-  width: 900px;
+.form-all {
+  width: 500px;
   margin: auto;
   margin-top: 20px;
+}
+
+.save-button{
+  .md-raised.btn.md-default-theme {
+    padding: 0px;
+  }
+  h3 {
+    margin: 10px;
+    font-weight: 500;
+  }
 }
 

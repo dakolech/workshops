@@ -4,6 +4,16 @@
 
 = render 'form'
 
-= link_to 'Show', category
-\|
-= link_to 'Back', categories_path, class: 'btn btn-primary'
+//= link_to 'Show', category
+//\|
+//= link_to 'Back', categories_path, class: 'btn btn-primary'
+
+.new-button
+  = link_to category do
+    %md-button.md-raised.md-primary.btn
+      %strong Show Category
+
+.back-button
+  = link_to categories_path do
+    %md-button.md-raised.md-primary.btn
+      %strong Back

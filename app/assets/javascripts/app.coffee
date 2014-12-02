@@ -1,6 +1,7 @@
 workshops = angular.module('workshops',[
   'ngMaterial',
-  'controllers'
+  'CategoriesControllers',
+  'ProductsControllers'
 ])
 
 controllers = angular.module('controllers',[])
