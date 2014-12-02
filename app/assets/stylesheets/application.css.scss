@@ -1,2 +1,82 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_self
+ */
+
 @import "bootstrap";
 @import "angular-material/angular-material";
+
+.md-button-inner.ng-binding.category-image {
+  padding: 0px;
+}
+
+button.md-button-inner {
+  padding: 0px;
+}
+md-button {
+  margin: 0px;
+}
+
+.category-table {
+  padding: 20px;
+  display: table;
+  margin: auto;
+
+  .cell {
+    display: inline-table;
+    padding: 20px;
+    .image-cell {
+
+    }
+    .product-cell {
+      width: 300px;
+      overflow: hidden;
+      text-align: right;
+      .md-button-inner {
+        padding: 5px;
+        h3 {
+          margin: 5px;
+          small {
+            display: block;
+            margin: 10px
+          }
+        }
+        h4 {
+          margin: 5px;
+        }
+      }
+    }
+    .admin {
+      padding-right: 5px;
+      float: right;
+      }
+    }
+  }
+
+.new-button {
+  margin: auto;
+  text-align: center;
+}
+
+.back-button {
+  margin: auto;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.form-product {
+  width: 900px;
+  margin: auto;
+  margin-top: 20px;
+}
+

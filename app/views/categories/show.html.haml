@@ -1,21 +1,44 @@
 #{ provide(:title, category.name) }
-category.name
 
-%p#notice= notice
+%div{"ng-controller" => "CategoriesController"}
 
-%p
-  %b Name:
-  = category.name
+  %h1= category.name
 
-%p
-  - category.products.each do |product|
-    = product.title
+  - if current_user
+    .new-button
+      %md-button.md-raised.md-primary.btn{"aria-controls" => "new-product", "aria-expanded" => "true",
+                                                       "data-target" => "#new-product", "data-toggle" => "collapse",
+                                                       :type => "button", "ng-click"=>"newProductButton = !newProductButton"}
+        %strong{"ng-show"=>"newProductButton"} Add new product
+        %strong{"ng-hide"=>"newProductButton"} Hide form
+      #new-product.collapse
+        = render 'products/form'
 
-%p
-  %h3 New product
-  = render 'products/form'
+  .category-table
+    - category.products.each do |product|
+      .cell
+        .product-cell
+          =link_to category_product_path(product.category, product) do
+            %md-button.md-raised.category-image
+              %h3
+                = product.title
+              %h3
+                %small= truncate product.description, length: 30
+              %h4
+                = number_to_currency product.price, unit: "PLN", separator: ",", delimiter: " ", format: "%n %u"
+        - if current_user && current_user == product.user
+          .admin
+            %td= link_to 'Edit', edit_category_product_path(product.category, product)
+            %td= link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
 
-- if current_user && current_user.admin?
-  = link_to 'Edit', edit_category_path(category)
-  \|
-= link_to 'Back', categories_path, class: 'btn btn-primary'
+  .new-button
+    - if current_user && current_user.admin?
+      = link_to edit_category_path(category) do
+        %md-button.md-raised.md-primary.btn
+          %strong Edit Category
+
+  .back-button
+    = link_to categories_path do
+      %md-button.md-raised.md-primary.btn
+        %strong Back
+

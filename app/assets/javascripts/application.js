@@ -5,5 +5,6 @@
 //= require angular-aria/angular-aria
 //= require angular-material/angular-material
 //= require hammerjs/hammer
+//= require bootstrap
 
 //= require_tree .

@@ -1,43 +1,56 @@
 #{ provide(:title, 'Categories') }
 
-%h1 Listing categories
+-#
+  %h1 Listing categories
+
+  %div{"ng-controller" => "CategoriesController"}
+
+    %table.table
+      %tr
+        %th Name
+        %th
+        %th
+        %th
+
+      - categories.each do |category|
+        %tr
+          %td= category.name
+          %td= link_to 'Show', category
+          - if current_user && current_user.admin?
+            %td= link_to 'Edit', edit_category_path(category)
+            %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
+
+    %md-content
+      %md-list
+        - categories.each do |category|
+          %md-item
+            %md-item-content
+              .md-tile-content
+                %h3= category.name
+                %h4= link_to 'Show', category
+                %p
+                  - if current_user && current_user.admin?
+                    %td= link_to 'Edit', edit_category_path(category)
+                    %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
 
 %div{"ng-controller" => "CategoriesController"}
 
-  %table.table
-    %tr
-      %th Name
-      %th
-      %th
-      %th
-
+  .category-table
     - categories.each do |category|
-      %tr
-        %td= category.name
-        %td= link_to 'Show', category
-        - if current_user && current_user.admin?
-          %td= link_to 'Edit', edit_category_path(category)
-          %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
-
-  %md-content
-    %md-list
-      - categories.each do |category|
-        %md-item
-          %md-item-content
-            .md-tile-content
+      .cell
+        .image-cell
+          =link_to category do
+            %md-button.md-raised.category-image
+              =image_tag("#{category.name}.jpg", class: "category_image")
               %h3= category.name
-              %h4= link_to 'Show', category
-              %p
-                - if current_user && current_user.admin?
-                  %td= link_to 'Edit', edit_category_path(category)
-                  %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
+        - if current_user && current_user.admin?
+          .admin
+            %td= link_to 'Edit', edit_category_path(category)
+            %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
 
-
-  %br
   - if current_user && current_user.admin?
-    = link_to 'New Category', new_category_path
+    .new-button
+      =link_to new_category_path do
+        %md-button.md-raised.md-primary.btn
+          %strong New Category
 
-  %md-button.md-raised {{title1}}
-
-  %md-checkbox{"md-no-ink"=>true, "aria-label"=>"Checkbox No Ink"}
-    Checkbox (No Ink)
