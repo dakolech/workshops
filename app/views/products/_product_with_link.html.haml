@@ -1,0 +1,7 @@
+%md-item-content
+  .md-tile-content
+    %h3
+      =link_to category_product_path(product.category, product) do
+        = product.title
+    %h4= product.description
+    %p= number_to_currency product.price, unit: "PLN", separator: ",", delimiter: " ", format: "%n %u"

@@ -1,9 +1,83 @@
-=@user.firstname
+#{ provide(:title, @user.firstname + " " + @user.lastname) }
 
+%div{"ng-controller" => "UserProfileController"}
 
-%table
-  - @user.reviews.order('created_at DESC').take(5).each do |review|
-    %tr
-      %td= review.rating
-      %td= review.content
-      %td= review.created_at
+  .user-info
+    %h1
+      =@user.firstname
+      =@user.lastname
+
+    %h2
+      =@user.email
+
+    %h3
+      - if @user.admin?
+        Admin
+      - else
+        Normal user
+
+  .user-table
+    .cell
+      - if @user.reviews.count > 0
+        %md-toolbar.md-theme-light
+          %h1.md-toolbar-tools
+            %span{"ng-hide"=>"showAllReviews"}
+              - if @user.reviews.count > 5
+                Last 5 reviews
+              - else
+                All reviews
+            %span{"ng-show"=>"showAllReviews"} All reviews
+        %md-content
+          %md-list
+            - @user.reviews.order('created_at DESC').each_with_index do |review, index| #.take(5)
+              - if index < 5
+                %md-item
+                  //= render 'reviews/review_with_link'
+                  = render partial: 'reviews/review_with_link', locals: {review: review}
+              - else
+                %md-item{"ng-show"=>"showAllReviews"}
+                  = render partial: 'reviews/review_with_link', locals: {review: review}
+        - if @user.reviews.count > 5
+          %md-button.md-raised.md-primary.btn{"ng-click"=>"showAllReviews = !showAllReviews"}
+            %strong{"ng-hide"=>"showAllReviews"} Show all reviews
+            %strong{"ng-show"=>"showAllReviews"} Hide most of reviews
+
+      - else
+        %md-toolbar.md-theme-light
+          %h1.md-toolbar-tools
+            %span
+              = @user.firstname
+
+              didn't review any product.
+    .cell
+      - if @user.products.count > 0
+        %md-toolbar.md-theme-light
+          %h1.md-toolbar-tools
+            %span{"ng-hide"=>"showAllProducts"}
+              - if @user.products.count > 5
+                Last 5 products
+              - else
+                All products
+            %span{"ng-show"=>"showAllProducts"} All products
+        %md-content
+          %md-list
+            - @user.products.order('created_at DESC').each_with_index do |product, index|
+              - if index < 5
+                %md-item
+                  = render partial: 'products/product_with_link', locals: {product: product}
+              - else
+                %md-item{"ng-show"=>"showAllProducts"}
+                  = render partial: 'products/product_with_link', locals: {product: product}
+
+        - if @user.products.count > 5
+          %md-button.md-raised.md-primary.btn{"ng-click"=>"showAllProducts = !showAllProducts"}
+            %strong{"ng-hide"=>"showAllProducts"} Show all products
+            %strong{"ng-show"=>"showAllProducts"} Hide most of products
+
+      - else
+        %md-toolbar.md-theme-light
+          %h1.md-toolbar-tools
+            %span
+              = @user.firstname
+              didn't add any product.
+

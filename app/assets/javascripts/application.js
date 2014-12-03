@@ -7,4 +7,5 @@
 //= require hammerjs/hammer
 //= require bootstrap
 
+//= require app
 //= require_tree .

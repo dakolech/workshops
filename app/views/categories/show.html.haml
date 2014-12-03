@@ -1,6 +1,6 @@
 #{ provide(:title, category.name) }
 
-%div{"ng-controller" => "CategoriesController"}
+%div{"ng-controller" => "CategoryController"}
 
   %h1= category.name
 
@@ -14,7 +14,7 @@
       #new-product.collapse
         = render 'products/form'
 
-  .category-table
+  .main-table
     - category.products.each do |product|
       .cell
         .product-cell

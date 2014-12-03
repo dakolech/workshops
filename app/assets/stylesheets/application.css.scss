@@ -27,10 +27,11 @@ md-button {
   margin: 0px;
 }
 
-.category-table {
+.main-table {
   padding: 20px;
   display: table;
   margin: auto;
+  text-align: center;
 
   .cell {
     display: inline-table;
@@ -39,9 +40,8 @@ md-button {
 
     }
     .product-cell {
-      width: 250px;
       overflow: hidden;
-      text-align: right;
+      text-align: center;
       md-button {
         min-width: 225px;
       }
@@ -60,7 +60,6 @@ md-button {
       }
     }
     .admin {
-      padding-right: 5px;
       float: right;
       }
     }
@@ -93,3 +92,22 @@ md-button {
   }
 }
 
+.user-table {
+  padding: 20px;
+  display: table;
+  width: 100%;
+
+  .cell {
+    display: inline-table;
+    padding: 20px;
+    width: 50%;
+    md-button {
+      margin-left: 15px;
+      margin-top: 15px;
+    }
+  }
+}
+
+.user-info {
+  margin-left: 45px;
+}

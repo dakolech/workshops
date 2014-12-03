@@ -1,5 +1,6 @@
-controllers = angular.module('ProductsControllers',[])
-controllers.controller("ProductsController", [ '$scope'
+angular.module('workshops').controller("ProductController", [ '$scope'
   ($scope)->
+
     $scope.newReviewButton = true
+
 ])
