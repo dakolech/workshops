@@ -2,6 +2,9 @@
 
 %div{"ng-controller" => "CategoryController"}
 
+  %p#notice= notice
+  %p#error= flash[:error]
+
   .main-table
     - categories.each do |category|
       .cell

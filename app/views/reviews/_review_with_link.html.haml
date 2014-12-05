@@ -3,5 +3,9 @@
     %h3
       =link_to category_product_path(review.product.category, review.product) do
         = review.product.title
+    - review.rating.times do |index|
+      %i.fa.fa-star
+    - (5-review.rating).times do |index|
+      %i.fa.fa-star-o
     %h4= review.content
     %p= review.created_at.strftime("%H:%M %d-%m-%Y")

@@ -53,7 +53,7 @@
         - if @user.reviews.count > 5
           %md-button.md-raised.md-primary.btn{"ng-click"=>"showAllReviews = !showAllReviews"}
             %strong{"ng-hide"=>"showAllReviews"} Show all reviews
-            %strong{"ng-show"=>"showAllReviews"} Hide most of reviews
+            %strong{"ng-show"=>"showAllReviews"} Hide some of reviews
 
       - else
         %md-toolbar.md-theme-light
@@ -84,7 +84,7 @@
         - if @user.products.count > 5
           %md-button.md-raised.md-primary.btn{"ng-click"=>"showAllProducts = !showAllProducts"}
             %strong{"ng-hide"=>"showAllProducts"} Show all products
-            %strong{"ng-show"=>"showAllProducts"} Hide most of products
+            %strong{"ng-show"=>"showAllProducts"} Hide some of products
 
       - else
         %md-toolbar.md-theme-light
