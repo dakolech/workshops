@@ -1,4 +1,12 @@
-%p= review.content
-%p
-  %b= review.rating
-  %em= review.author
+%md-item-content
+  .md-tile-content
+    %h3
+      =link_to user_path(review.user) do
+        = review.user.firstname + " " + review.user.lastname
+      %small= review.created_at.strftime("%H:%M %d-%m-%Y")
+    - review.rating.times do |index|
+      %i.fa.fa-star
+    - (5-review.rating).times do |index|
+      %i.fa.fa-star-o
+    %h4= review.content
+

@@ -1,36 +1,42 @@
 !!!
 %html{ lang: 'en', "ng-app"=>'workshops'}
   %head
-    %title #{ full_title(yield(:title)) }
+    %title #{ full_title(yield(:title)) + " - Netguru Poznań Workshops 2014" }
     %meta{ charset: 'utf-8' }/
     %meta{ content: 'IE=Edge,chrome=1', 'http-equiv' => 'X-UA-Compatible' }/
     %meta{ content: 'width=device-width, initial-scale=1.0', name: 'viewport' }/
     = csrf_meta_tags
+    %link{"href"=>"//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css", "rel"=>"stylesheet"}
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
 
   %body
-    %nav.navbar.navbar-default
-      .container-fluid
-        .navbar-header
-          %span.navbar-brand
-            =link_to AppConfig.workshops_name, root_path
-        %ul.nav.navbar-nav.pull-right
-          - if current_user
-            %li
-              - if current_user.admin?
-                =link_to "Admin profile", user_path(current_user)
-              - else
-                =link_to "My profile", user_path(current_user)
-            %li
-              =link_to "Edit account", edit_user_registration_path
-            %li
-              =link_to "Sign out", destroy_user_session_path, method: :delete
-          - else
-            %li
-              =link_to "Log in", new_user_session_path
-            %li
-              =link_to "Register", new_user_registration_path
+    %nav
+      .container
+        .left
+          .navbar-header
+            %span.navbar-brand
+              =link_to AppConfig.workshops_name, root_path
+        .center
+          %h1.navbar-brand
+            = full_title(yield(:title))
+        .right
+          %ul.nav.navbar-nav.navbar-right
+            - if current_user
+              %li
+                =link_to "Home", root_path
+              %li
+                - if current_user.admin?
+                  =link_to "Admin profile", user_path(current_user)
+                - else
+                  =link_to "My profile", user_path(current_user)
+              %li
+                =link_to "Sign out", destroy_user_session_path, method: :delete
+            - else
+              %li
+                =link_to "Sign in", new_user_session_path
+              %li
+                =link_to "Sign up", new_user_registration_path
     .container-fluid
       .row
         .col-lg-12

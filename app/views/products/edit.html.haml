@@ -1,9 +1,15 @@
 #{ provide(:title, 'Edit: ' + product.title) }
 
-%h1 Editing product
-
 = render 'form'
 
-= link_to 'Show', category_product_path(category, product)
-\|
-= link_to 'Back', category_path(category)
+.new-button
+  .margin-top
+    = link_to category_product_path(category, product) do
+      %md-button.md-raised.md-primary.btn
+        %strong Show Product
+
+.back-button
+  = link_to category_path(category) do
+    %md-button.md-raised.md-primary.btn
+      %strong Back to product
+

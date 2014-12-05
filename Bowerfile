@@ -1,4 +1,5 @@
 asset 'angular'
 asset 'angular-material'
+asset 'components-font-awesome'
 
 

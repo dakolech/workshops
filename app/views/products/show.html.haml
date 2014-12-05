@@ -5,47 +5,64 @@
   %p#notice= notice
   %p#error= flash[:error]
 
-  %p
-    %b Title:
-    = product.title
-  %p
-    %b Description:
-    = product.description
-  %p
-    %b Price:
-    = product.price
+  .two-column-table
+    .cell
 
-  %p
-    %b Category
-    = product.category.name
+      %h1
+        %small Title:
+        = product.title
+      %h2
+        %small Description:
+        = product.description
+      %h2
+        %small Price:
+        = number_to_currency product.price, unit: "PLN", separator: ",", delimiter: " ", format: "%n %u"
 
-  - if current_user
-    .new-button
-      %md-button.md-raised.md-primary.btn{"aria-controls" => "new-product", "aria-expanded" => "true",
-                                                       "data-target" => "#new-product", "data-toggle" => "collapse",
-                                                       :type => "button", "ng-click"=>"newReviewButton = !newReviewButton"}
-        %strong{"ng-show"=>"newReviewButton"} Add new review
-        %strong{"ng-hide"=>"newReviewButton"} Hide form
-      #new-product.collapse
-        = render 'reviews/form'
+      %h2
+        %small Average rating:
+        = product.average_rating
+
+      %h3
+        %small Category
+        = product.category.name
 
 
-  %h3 Reviews
-  //= render 'reviews/form'
 
-  = render reviews
+      .new-button
+        - if current_user && current_user == product.user
+          = link_to edit_category_product_path(category.id, product.id) do
+            %md-button.md-raised.md-primary.btn
+              %strong Edit Product
+
+    .cell
+      - if current_user
+        .new-button
+          .margin-bottom
+            %md-button.md-raised.md-primary.btn{"aria-controls" => "new-product", "aria-expanded" => "true",
+                                                             "data-target" => "#new-product", "data-toggle" => "collapse",
+                                                             :type => "button", "ng-click"=>"newReviewButton = !newReviewButton"}
+              %strong{"ng-show"=>"newReviewButton"} Add new review
+              %strong{"ng-hide"=>"newReviewButton"} Hide form
+            #new-product.collapse
+              = render 'reviews/form'
+
+
+      %md-toolbar.md-theme-light
+        %h1.md-toolbar-tools
+          %span
+            Reviews
+      //= render 'reviews/form'
+
+      = render reviews
 
   //= link_to 'Edit', edit_category_product_path(category.id, product.id)
   //\|
   //= link_to 'Back', category_products_path, class: 'btn btn-primary'
 
-  .new-button
-    - if current_user && current_user == product.user
-      = link_to edit_category_product_path(category.id, product.id) do
-        %md-button.md-raised.md-primary.btn
-          %strong Edit Product
 
   .back-button
     = link_to category_products_path do
       %md-button.md-raised.md-primary.btn
-        %strong Back
+        %strong
+          Back to
+          = product.category.name

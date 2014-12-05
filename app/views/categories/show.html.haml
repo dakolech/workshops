@@ -2,17 +2,16 @@
 
 %div{"ng-controller" => "CategoryController"}
 
-  %h1= category.name
-
   - if current_user
     .new-button
-      %md-button.md-raised.md-primary.btn{"aria-controls" => "new-product", "aria-expanded" => "true",
-                                                       "data-target" => "#new-product", "data-toggle" => "collapse",
-                                                       :type => "button", "ng-click"=>"newProductButton = !newProductButton"}
-        %strong{"ng-show"=>"newProductButton"} Add new product
-        %strong{"ng-hide"=>"newProductButton"} Hide form
-      #new-product.collapse
-        = render 'products/form'
+      .margin-top
+        %md-button.md-raised.md-primary.btn{"aria-controls" => "new-product", "aria-expanded" => "true",
+                                                         "data-target" => "#new-product", "data-toggle" => "collapse",
+                                                         :type => "button", "ng-click"=>"newProductButton = !newProductButton"}
+          %strong{"ng-show"=>"newProductButton"} Add new product
+          %strong{"ng-hide"=>"newProductButton"} Hide form
+        #new-product.collapse
+          = render 'products/form'
 
   .main-table
     - category.products.each do |product|
@@ -29,7 +28,7 @@
         - if current_user && current_user == product.user
           .admin
             %td= link_to 'Edit', edit_category_product_path(product.category, product)
-            %td= link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
+            %td= link_to 'Delete', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
 
   .new-button
     - if current_user && current_user.admin?
@@ -40,5 +39,5 @@
   .back-button
     = link_to categories_path do
       %md-button.md-raised.md-primary.btn
-        %strong Back
+        %strong Back to Home
 

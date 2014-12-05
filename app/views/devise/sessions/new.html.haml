@@ -1,9 +1,15 @@
-%h2 Sign in
-= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .form-inputs
-    = f.input :email, required: false, autofocus: true
-    = f.input :password, required: false
-    = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
-  .form-actions
-    = f.button :submit, "Sign in"
-= render "devise/shared/links"
+#{ provide(:title, "Sign in") }
+
+.form-all
+  = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    .form-inputs
+      = f.input :email, required: false, autofocus: true
+      = f.input :password, required: false
+      = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+    .form-actions
+      //= f.button :submit, "Sign in"
+      .save-button{ "name"=>"commit", "type"=>"submit" }
+        %md-button.md-raised.btn
+          %h3 Sign in
+
+  = render "devise/shared/links"

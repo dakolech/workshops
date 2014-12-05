@@ -3,8 +3,6 @@
   "dependencies": {
     "angular": "latest",
     "angular-material": "latest",
-    "angular-bootstrap": "latest"
-  },
-  "resolutions": {
+    "components-font-awesome": "latest"
   }
 }

@@ -1,22 +1,35 @@
-#{ provide(:title, @user.firstname + " " + @user.lastname) }
+- if @user.admin?
+  #{ provide(:title, "Admin profile") }
+- else
+  #{ provide(:title, @user.firstname + " profile") }
+
 
 %div{"ng-controller" => "UserProfileController"}
 
   .user-info
     %h1
+      %small Name:
       =@user.firstname
       =@user.lastname
 
     %h2
+      %small E-mail:
       =@user.email
 
     %h3
+      %small Role:
       - if @user.admin?
         Admin
       - else
         Normal user
 
-  .user-table
+  - if current_user && current_user == @user
+    .new-button
+      =link_to edit_user_registration_path do
+        %md-button.md-raised.md-primary.btn
+          %strong Edit account
+
+  .two-column-table
     .cell
       - if @user.reviews.count > 0
         %md-toolbar.md-theme-light
@@ -47,7 +60,6 @@
           %h1.md-toolbar-tools
             %span
               = @user.firstname
-
               didn't review any product.
     .cell
       - if @user.products.count > 0
@@ -80,4 +92,5 @@
             %span
               = @user.firstname
               didn't add any product.
+
 

@@ -1,37 +1,4 @@
-#{ provide(:title, 'Categories') }
-
--#
-  %h1 Listing categories
-
-  %div{"ng-controller" => "CategoriesController"}
-
-    %table.table
-      %tr
-        %th Name
-        %th
-        %th
-        %th
-
-      - categories.each do |category|
-        %tr
-          %td= category.name
-          %td= link_to 'Show', category
-          - if current_user && current_user.admin?
-            %td= link_to 'Edit', edit_category_path(category)
-            %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
-
-    %md-content
-      %md-list
-        - categories.each do |category|
-          %md-item
-            %md-item-content
-              .md-tile-content
-                %h3= category.name
-                %h4= link_to 'Show', category
-                %p
-                  - if current_user && current_user.admin?
-                    %td= link_to 'Edit', edit_category_path(category)
-                    %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
+#{ provide(:title, 'Welcome') }
 
 %div{"ng-controller" => "CategoryController"}
 
@@ -46,7 +13,7 @@
         - if current_user && current_user.admin?
           .admin
             %td= link_to 'Edit', edit_category_path(category)
-            %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
+            %td= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' }
 
   - if current_user && current_user.admin?
     .new-button
