@@ -20,10 +20,13 @@
 
       %h2
         %small Average rating:
-        = product.average_rating
+        -if product.reviews.count == 0
+          = product.average_rating
+        - else
+          = product.average_rating.round(2)
 
       %h3
-        %small Category
+        %small Category:
         = product.category.name
 
 
@@ -35,6 +38,17 @@
               %strong Edit Product
 
     .cell
+
+
+
+      %md-toolbar.md-theme-light
+        %h1.md-toolbar-tools
+          %span
+            Reviews
+      //= render 'reviews/form'
+
+      = render reviews
+
       - if current_user
         .new-button
           .margin-bottom
@@ -45,15 +59,6 @@
               %strong{"ng-hide"=>"newReviewButton"} Hide form
             #new-product.collapse
               = render 'reviews/form'
-
-
-      %md-toolbar.md-theme-light
-        %h1.md-toolbar-tools
-          %span
-            Reviews
-      //= render 'reviews/form'
-
-      = render reviews
 
   //= link_to 'Edit', edit_category_product_path(category.id, product.id)
   //\|
