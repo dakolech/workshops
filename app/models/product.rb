@@ -8,16 +8,11 @@ class Product < ActiveRecord::Base
   validates :title, presence: true
 
   def average_rating
-    if reviews.count == 0
-      "There is no reviews for this product"
-    else
-      rating = 0.0
-      reviews.each do |el|
-        rating += el.rating
-      end
-      rating /= reviews.count
+    rating = 0.0
+    reviews.each do |el|
+      rating += el.rating
     end
-
+    rating /= reviews.count
   end
 
 end

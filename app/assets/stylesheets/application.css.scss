@@ -210,3 +210,17 @@ nav {
     margin-left: 10px;
   }
 }
+
+.message {
+  text-align: center;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  p {
+    font-size: 18px;
+    color: $blue;
+    #error {
+      color: red;
+    }
+  }
+}

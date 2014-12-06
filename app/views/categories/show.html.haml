@@ -2,6 +2,10 @@
 
 %div{"ng-controller" => "CategoryController"}
 
+  .message
+    %p#notice= notice
+    %p#error= flash[:error]
+
   - if current_user
     .new-button
       .margin-top

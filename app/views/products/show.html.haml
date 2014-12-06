@@ -2,8 +2,9 @@
 
 %div{"ng-controller" => "ProductController"}
 
-  //%p#notice= notice
-  //%p#error= flash[:error]
+  .message
+    %p#notice= notice
+    %p#error= flash[:error]
 
   .two-column-table
     .cell
@@ -21,7 +22,7 @@
       %h2
         %small Average rating:
         -if product.reviews.count == 0
-          = product.average_rating
+          There are no reviews for this product
         - else
           = product.average_rating.round(2)
 

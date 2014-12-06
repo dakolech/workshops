@@ -6,6 +6,10 @@
 
 %div{"ng-controller" => "UserProfileController"}
 
+  .message
+    %p#notice= notice
+    %p#error= flash[:error]
+
   .user-info
     %h1
       %small Name:
