@@ -1,7 +1,10 @@
 #{ provide(:title, 'Create new product') }
 
-%h1 New product
-
 = render 'form'
 
-= link_to 'Back', category_products_path
+//= link_to 'Back', category_products_path
+
+.back-button
+  = link_to category_products_path do
+    %md-button.md-raised.md-primary.btn
+      %strong Back
